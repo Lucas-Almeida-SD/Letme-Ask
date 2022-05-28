@@ -1,4 +1,4 @@
-import { FormEvent, useEffect, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import logoImg from '../assets/images/logo.svg';
@@ -7,25 +7,12 @@ import { RoomCode } from '../components/RoomCode';
 import { useAuth } from '../hooks/useAuth';
 import { database } from '../services/firebase';
 import '../styles/room.scss';
+import { Question } from '../components/Question';
+import { useRoom } from '../hooks/useRoom';
 
 type ParamsType = {
   id: string
 };
-
-type FirebaseQuestions = Record<string,{
-  content:string,
-  author: { name: string, avatar: string },
-  isHighlighted: boolean,
-  isAnswered: boolean,
-}>
-
-type Questions = {
-  id: string,
-  content:string,
-  author: { name: string, avatar: string },
-  isHighlighted: boolean,
-  isAnswered: boolean,
-}
 
 const questionSent = () => toast.success('Question sent!');
 const questionNotSent = () => toast.error("Question not sent. Log in to submit a question!");
@@ -34,29 +21,8 @@ export function Room() {
   const params = useParams<ParamsType>();
   const [newQuestion, setNewQuestion] = useState('');
   const { user } = useAuth();
-  const [questions, setQuestions] = useState<Questions[]>([])
-  const [title, setTitle] = useState('');
+  const { title, questions } = useRoom(params.id);
 
-  useEffect(() => {
-    const roomRef = database.ref(`/rooms/${params.id}`);
-
-    roomRef.on('value', room => {
-      const databaseRoom = room.val();
-      const firebaseQuestions : FirebaseQuestions = databaseRoom.questions ?? {};
-      
-      const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => ({
-        id: key,
-        content: value.content,
-        author: value.author,
-        isHighlighted: value.isHighlighted,
-        isAnswered: value.isAnswered,
-      }));
-      
-      setTitle(databaseRoom.title);
-      setQuestions(parsedQuestions);
-    })
-    
-  }, [params.id]);
 
   const handleSubmit = async (event : FormEvent) => {
     event.preventDefault();
@@ -90,8 +56,8 @@ export function Room() {
 
       <main className="content">
         <div className="room-title">
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>{title}</h1>
+          <span>{questions.length} perguntas</span>
         </div>
 
         <form onSubmit={ handleSubmit }>
@@ -118,6 +84,15 @@ export function Room() {
           </div>
           <Toaster />
         </form>
+
+        <div className="question-list">
+          {questions.map((question, index) => (
+            <Question
+              key={`user-${index}-${question.author.name}`}
+              content={ question.content }
+              author={ question.author }
+            />))}
+        </div>
       </main>
     </div>
   );
