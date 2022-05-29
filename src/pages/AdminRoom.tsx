@@ -1,13 +1,16 @@
 import { useParams, useHistory } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import logoImg from '../assets/images/logo.svg';
 import { Button } from "../components/Button";
 import { RoomCode } from '../components/RoomCode';
 import { database } from '../services/firebase';
 import '../styles/room.scss';
 import { Question } from '../components/Question';
 import { useRoom } from '../hooks/useRoom';
+
+import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
+import checkImg from '../assets/images/check.svg';
+import answerImg from '../assets/images/answer.svg';
 
 type ParamsType = {
   id: string
@@ -21,6 +24,10 @@ export function AdminRoom() {
   const history = useHistory();
   const { title, questions } = useRoom(roomId);
 
+  const handleCloseRoom = async () => {
+    await database.ref(`/rooms/${roomId}`).update({ closedAt: new Date() });
+    history.push('/');
+  }
 
   const handleRemoveQuestion = async (questionId : string) => {
     if (window.confirm('Tem certeza que deseja remover essa pergunta?')) {
@@ -29,9 +36,12 @@ export function AdminRoom() {
     }
   }
 
-  const handleCloseRoom = async () => {
-    await database.ref(`/rooms/${roomId}`).update({ closedAt: new Date() });
-    history.push('/');
+  const handleCheckQuestionAsAnswered = async (questionId : string) => {
+    await database.ref(`/rooms/${roomId}/questions/${questionId}`).update({ isAnswered: true });
+  }
+
+  const handleHighlightQuestion = async (questionId : string) => {
+    await database.ref(`/rooms/${roomId}/questions/${questionId}`).update({ isHighlighted: true });
   }
 
   return (
@@ -58,9 +68,32 @@ export function AdminRoom() {
               key={`user-${index}-${question.author.name}`}
               content={ question.content }
               author={ question.author }
+              isAnswered={ question.isAnswered }
+              isHighlighted={question.isHighlighted }
             >
+              {(!question.isAnswered) && (
+                <>
+                  <button
+                    type="button"
+                    aria-label="Botão de marcar pergunta como respondida"
+                    onClick={ () => handleCheckQuestionAsAnswered(question.id)}
+                  >
+                    <img src={ checkImg } alt="Marcar perguta" />
+                  </button>
+                  {(!question.isHighlighted && (
+                    <button
+                      type="button"
+                      aria-label="Botão de dar detaque à pergunta"
+                      onClick={ () => handleHighlightQuestion(question.id)}
+                    >
+                      <img src={ answerImg } alt="Dar detaque à perguta" />
+                    </button>
+                  ))}
+                </>
+              )}
               <button
-                aria-label="Remover question"
+                type="button"
+                aria-label="Botão de remover perguta"
                 onClick={ () => handleRemoveQuestion(question.id)}
               >
                 <img src={ deleteImg } alt="Remover perguta" />
