@@ -14,6 +14,16 @@
     > img {
       max-height: 45px;
     }
+
+    .buttons-header {
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+
+      button {
+        height: 36px;
+      }
+    }
   }
 
   main {

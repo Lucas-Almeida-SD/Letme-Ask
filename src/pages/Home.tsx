@@ -28,6 +28,10 @@ export function Home() {
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
+    if (roomRef.val().closedAt ) {
+      return window.alert('Room already closed!')
+    }
+
     if (!roomRef.exists()) { 
       return alert('Room does not exists!')
     }
