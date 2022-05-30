@@ -23,11 +23,12 @@ type FirebaseQuestions = Record<string,{
 }>
 
 export function useRoom(roomId : string) {
-  const { user } = useAuth();
+  const { user, setIsFetching } = useAuth();
   const [questions, setQuestions] = useState<Questions[]>([])
   const [title, setTitle] = useState('');
 
   useEffect(() => {
+    setIsFetching(true);
     const roomRef = database.ref(`/rooms/${roomId}`);
 
     roomRef.on('value', room => {
@@ -47,11 +48,13 @@ export function useRoom(roomId : string) {
       
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions.reverse());
+      setIsFetching(false);
     });
 
     return () => {
       roomRef.off('value');
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, user?.id]);
 
   return { title, questions };

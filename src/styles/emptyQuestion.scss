@@ -1,0 +1,25 @@
+.empty-room {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    text-align: center;
+    font-family: Poppins, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 27px;
+    color: #29292E;
+  }
+
+  h3 {
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: #737380;
+    text-align: center;
+    margin-top: 8px;
+    width: 284px;
+  }
+}

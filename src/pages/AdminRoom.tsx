@@ -11,6 +11,9 @@ import logoImg from '../assets/images/logo.svg';
 import deleteImg from '../assets/images/delete.svg';
 import checkImg from '../assets/images/check.svg';
 import answerImg from '../assets/images/answer.svg';
+import { EmptyQuestions } from '../components/EmptyQuestions';
+import { useAuth } from '../hooks/useAuth';
+import { Loading } from '../components/Loading';
 
 type ParamsType = {
   id: string
@@ -23,10 +26,12 @@ export function AdminRoom() {
   const roomId = params.id;
   const history = useHistory();
   const { title, questions } = useRoom(roomId);
+  const { isFetching } = useAuth();
+  const emptyRoomText = 'Envie o código desta sala para seus amigos e comece a responder perguntas!';
 
   const handleCloseRoom = async () => {
     await database.ref(`/rooms/${roomId}`).update({ closedAt: new Date() });
-    history.push('/');
+    history.push('/Letme-Ask');
   }
 
   const handleRemoveQuestion = async (questionId : string) => {
@@ -56,52 +61,54 @@ export function AdminRoom() {
         </div>
       </header>
 
-      <main className="content">
-        <div className="room-title">
-          <h1>{title}</h1>
-          <span>{questions.length} perguntas</span>
-        </div>
+      {(!isFetching) ? (
+        <main className="content">
+          <div className="room-title">
+            <h1>{title}</h1>
+            <span>{questions.length} perguntas</span>
+          </div>
 
-        <div className="question-list">
-          {questions.map((question, index) => (
-            <Question
-              key={`user-${index}-${question.author.name}`}
-              content={ question.content }
-              author={ question.author }
-              isAnswered={ question.isAnswered }
-              isHighlighted={question.isHighlighted }
-            >
-              {(!question.isAnswered) && (
-                <>
-                  <button
-                    type="button"
-                    aria-label="Botão de marcar pergunta como respondida"
-                    onClick={ () => handleCheckQuestionAsAnswered(question.id)}
-                  >
-                    <img src={ checkImg } alt="Marcar perguta" />
-                  </button>
-                  {(!question.isHighlighted && (
+          <div className="question-list">
+            {questions.map((question, index) => (
+              <Question
+                key={`user-${index}-${question.author.name}`}
+                content={ question.content }
+                author={ question.author }
+                isAnswered={ question.isAnswered }
+                isHighlighted={question.isHighlighted }
+              >
+                {(!question.isAnswered) && (
+                  <>
                     <button
                       type="button"
-                      aria-label="Botão de dar detaque à pergunta"
-                      onClick={ () => handleHighlightQuestion(question.id)}
+                      aria-label="Botão de marcar pergunta como respondida"
+                      onClick={ () => handleCheckQuestionAsAnswered(question.id)}
                     >
-                      <img src={ answerImg } alt="Dar detaque à perguta" />
+                      <img src={ checkImg } alt="Marcar perguta" />
                     </button>
-                  ))}
-                </>
-              )}
-              <button
-                type="button"
-                aria-label="Botão de remover perguta"
-                onClick={ () => handleRemoveQuestion(question.id)}
-              >
-                <img src={ deleteImg } alt="Remover perguta" />
-              </button>
-            </Question>))}
-            <Toaster />
-        </div>
-      </main>
+                    {(!question.isHighlighted && (
+                      <button
+                        type="button"
+                        aria-label="Botão de dar detaque à pergunta"
+                        onClick={ () => handleHighlightQuestion(question.id)}
+                      >
+                        <img src={ answerImg } alt="Dar detaque à perguta" />
+                      </button>
+                    ))}
+                  </>
+                )}
+                <button
+                  type="button"
+                  aria-label="Botão de remover perguta"
+                  onClick={ () => handleRemoveQuestion(question.id)}
+                >
+                  <img src={ deleteImg } alt="Remover perguta" />
+                </button>
+              </Question>))}
+              {(!questions.length) && <EmptyQuestions emptyRoomText={ emptyRoomText } />}
+              <Toaster />
+          </div>
+        </main>) : <Loading />}
     </div>
   );
 };

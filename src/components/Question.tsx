@@ -17,6 +17,9 @@ export function Question({
   isAnswered = false,
   isHighlighted = false,
 } : QuestionType) {
+
+  console.log(Date());
+  
   
   return (
     <div

@@ -18,7 +18,7 @@ export function Home() {
     if (!user) {
       await signInWIthGoogle();
     }
-    history.push('/rooms/new')
+    history.push('/Letme-Ask/rooms/new')
   };
 
   const handleSubmit = async (event : FormEvent) => {
@@ -27,16 +27,21 @@ export function Home() {
     if (roomCode.trim() === '') { return; }
 
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
-
-    if (roomRef.val().closedAt ) {
-      return window.alert('Room already closed!')
-    }
-
+    const roomSelected = roomRef.val();
+    
     if (!roomRef.exists()) { 
       return alert('Room does not exists!')
     }
+    
+    if (roomSelected.closedAt) {
+      return window.alert('Room already closed!')
+    }
 
-    history.push(`/rooms/${roomCode}`)
+    if (roomSelected.authorId === user?.id) {
+      history.push(`/Letme-Ask/admin/rooms/${roomCode}`);
+    } else {
+      history.push(`/Letme-Ask/rooms/${roomCode}`);
+    }
   };
 
   return(

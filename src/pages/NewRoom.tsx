@@ -25,7 +25,7 @@ export function NewRoom() {
       authorId: user?.id,
     });
 
-    history.push(`/rooms/${firebaseRoom.key}`)
+    history.push(`/Letme-Ask/admin/rooms/${firebaseRoom.key}`)
   }
 
   return(
@@ -55,7 +55,7 @@ export function NewRoom() {
             </Button>
             <p>
               Quer entrar em uma sala existente?
-              <Link to="/">Clique aqui</Link>
+              <Link to="/Letme-Ask">Clique aqui</Link>
             </p>
           </form>
         </div>
