@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Letme-Ask/static/css/main.d22c3752.css",
-    "main.js": "/Letme-Ask/static/js/main.a3f3cc97.js",
+    "main.js": "/Letme-Ask/static/js/main.29cc044f.js",
     "static/media/loading.gif": "/Letme-Ask/static/media/loading.7b07a09a717932e8dd2a.gif",
     "static/media/illustration.svg": "/Letme-Ask/static/media/illustration.ae7276f02d68828a7fd05900182dccd4.svg",
     "static/media/logo.svg": "/Letme-Ask/static/media/logo.a88331cb56de8218e26a25fd0e49f1ac.svg",
@@ -13,10 +13,10 @@
     "static/media/answer.svg": "/Letme-Ask/static/media/answer.4502a8d5a18c09b88dbbc129df3c97a6.svg",
     "static/media/check.svg": "/Letme-Ask/static/media/check.5dfa6ed6686122c45d79fefd527e506f.svg",
     "main.d22c3752.css.map": "/Letme-Ask/static/css/main.d22c3752.css.map",
-    "main.a3f3cc97.js.map": "/Letme-Ask/static/js/main.a3f3cc97.js.map"
+    "main.29cc044f.js.map": "/Letme-Ask/static/js/main.29cc044f.js.map"
   },
   "entrypoints": [
     "static/css/main.d22c3752.css",
-    "static/js/main.a3f3cc97.js"
+    "static/js/main.29cc044f.js"
   ]
 }
