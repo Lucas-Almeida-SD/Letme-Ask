@@ -2,7 +2,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import copyImg from '../assets/images/copy.svg';
 import '../styles/roomCode.scss';
 
-const linkCopied = () => toast.success('Link copied!');
+const linkCopied = () => toast.success('Code copied!');
 
 type PropsType = {
   id: string

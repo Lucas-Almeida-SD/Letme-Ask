@@ -6,7 +6,7 @@ import '../styles/homeIcon.scss';
 
 export function HomeIcon() {
   return (
-    <Link to="/Letme-Ask">
+    <Link to="/Letme-Ask" id="home-icon">
       <img src={ homeImg } alt="Home" />
     </Link>
   );

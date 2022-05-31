@@ -4,11 +4,19 @@ import { useAuth } from "./useAuth";
 
 type RoomsValuesTypes = {
   title: string;
+  authorId: string,
+  authorName: string,
+  authorImage: string,
+  closedAt: string | undefined,
 }
 
 type RoomsType = {
   roomId: string,
   title: string,
+  authorId: string,
+  authorName: string,
+  authorImage: string,
+  closed: boolean,
 };
 
 
@@ -24,6 +32,10 @@ export function useAllRooms() {
       const arrayRooms  = Object.entries<RoomsValuesTypes>(roomsValues).map(([key, value]) => ({
         roomId: key,
         title: value.title,
+        authorId: value.authorId,
+        authorName: value.authorName,
+        authorImage: value.authorImage,
+        closed: (value.closedAt) ? true : false,
       }))
       setRooms(arrayRooms);
       setIsFetching(false);

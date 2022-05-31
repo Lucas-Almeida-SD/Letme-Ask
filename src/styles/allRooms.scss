@@ -22,20 +22,59 @@
     h2 {
       text-align: center;
       margin: 24px 0;
+      font-family: Roboto, sans-serif;
     }
 
-    .rooms {
+    .room {
       background-color: #fefefe;
       border-radius: 8px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-      padding: 18px;
-      margin: 14px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      padding: 22px 18px;
+      margin: 22px 0;
+      position: relative;
+
+      .status {
+        font-family: Poppins, sans-serif;
+        position: absolute;
+        top: 6px;
+        right: 18px;
+        font-size: 14px;
+        padding: 0 8px;
+        border-radius: 9999px;
+      }
+
+      .open {
+        background-color: #8ac926;
+      }
+
+      .closed {
+        background-color: #fc3950;
+      }
 
       p {
-        max-width: 60%;
+        font-size: 18px;
+        font-family: Poppins, sans-serif;
+      }
+
+      footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+        padding-top: 14px;
+        border-top: 1px solid #e2e2e2;
+
+        .user-info {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          img {
+            height: 48px;
+            width: 48px;
+            border-radius: 50%;
+          }
+        }
       }
     }
   }

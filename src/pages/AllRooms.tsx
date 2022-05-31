@@ -26,9 +26,18 @@ export function AllRooms() {
             <h2>Salas</h2>
             <div className="rooms-list">
               {rooms.map((room) => (
-                <div key={ room.roomId } className="rooms">
-                  <p><strong>Nome:</strong> {room.title}</p>
-                  <RoomCode id={ room.roomId } />
+                <div key={ room.roomId } className="room">
+                  <span className={`status ${(room.closed) ? 'closed' : 'open'}`}>
+                    {(room.closed) ? 'Fechada' : 'Aberta'}
+                  </span>
+                  <p><strong>Nome: </strong>{room.title}</p>
+                  <footer>
+                    <div className="user-info">
+                      <img src={ room.authorImage } alt={ room.authorName } />
+                      <span>{room.authorName}</span>
+                    </div>
+                    <RoomCode id={ room.roomId } />
+                  </footer>
                 </div>))}
             </div>
           </>
