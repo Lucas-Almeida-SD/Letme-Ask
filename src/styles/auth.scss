@@ -5,28 +5,28 @@
 
   aside {
     flex: 6;
+    align-self: stretch;
     background-color: #835afd;
     color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 120px 80px;
+    padding: 60px 80px;
   }
   
   img {
-    max-width: 320px;
+    max-width: 280px;
   }
   
   strong {
-    font: 700 36px Poppins, sans-serif;
+    font: 700 30px Poppins, sans-serif;
     line-height: 42px;
-    margin: 16px;
+    margin: 16px 0;
   }
   
   p {
     font-size: 24px;
     line-height: 32px;
-    margin-top: 16px;
     color: f8f8f8;
   }
   
