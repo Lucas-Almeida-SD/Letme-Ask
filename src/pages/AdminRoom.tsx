@@ -14,6 +14,9 @@ import answerImg from '../assets/images/answer.svg';
 import { EmptyQuestions } from '../components/EmptyQuestions';
 import { useAuth } from '../hooks/useAuth';
 import { Loading } from '../components/Loading';
+import { useEffect } from 'react';
+import { isAdmin } from '../helpers/isAdmin';
+import { HomeIcon } from '../components/HomeIcon';
 
 type ParamsType = {
   id: string
@@ -26,8 +29,13 @@ export function AdminRoom() {
   const roomId = params.id;
   const history = useHistory();
   const { title, questions } = useRoom(roomId);
-  const { isFetching } = useAuth();
+  const { user, isFetching } = useAuth();
   const emptyRoomText = 'Envie o código desta sala para seus amigos e comece a responder perguntas!';
+
+  useEffect(() => {
+    isAdmin(roomId, user, history);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, roomId]);
 
   const handleCloseRoom = async () => {
     await database.ref(`/rooms/${roomId}`).update({ closedAt: new Date() });
@@ -57,6 +65,7 @@ export function AdminRoom() {
           <div className='buttons-header'>
             <RoomCode id={ roomId } />
             <Button isOutlined onClick={ handleCloseRoom }>Encerrar sala</Button>
+            <HomeIcon />
           </div>
         </div>
       </header>

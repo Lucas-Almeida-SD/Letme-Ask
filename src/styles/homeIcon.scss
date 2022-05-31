@@ -1,0 +1,16 @@
+a {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  border: 1px solid #532acd;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #835afd;
+  transition: filter 0.2s;
+
+  &:hover {
+    filter: brightness(0.8);
+  }
+}

@@ -1,16 +1,24 @@
 import { FormEvent, useEffect, useState } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
-import logoImg from '../assets/images/logo.svg';
+
 import { Button } from "../components/Button";
 import { RoomCode } from '../components/RoomCode';
-import { useAuth } from '../hooks/useAuth';
-import { database } from '../services/firebase';
-import '../styles/room.scss';
 import { Question } from '../components/Question';
-import { useRoom } from '../hooks/useRoom';
 import { EmptyQuestions } from '../components/EmptyQuestions';
 import { Loading } from '../components/Loading';
+
+import { useAuth } from '../hooks/useAuth';
+import { useRoom } from '../hooks/useRoom';
+
+import logoImg from '../assets/images/logo.svg';
+
+import { database } from '../services/firebase';
+
+import { isAdmin } from '../helpers/isAdmin';
+
+import '../styles/room.scss';
+import { HomeIcon } from '../components/HomeIcon';
 
 type ParamsType = {
   id: string
@@ -29,18 +37,11 @@ export function Room() {
   const emptyRoomText = 'Faça o seu login e seja a primeira pessoa a fazer uma pergunta!';
 
   useEffect(() => {
-    const checkUser = async () => {
-      const roomRef = await database.ref(`rooms/${roomId}`).get();
-      const roomSelected = roomRef.val();
-      if (roomSelected.authorId === user?.id) {
-        history.push(`/Letme-Ask/admin/rooms/${roomId}`);
-      }
-    }
     if (user) {
-      checkUser();
+      isAdmin(roomId, user, history);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+  }, [ roomId, user]);
 
   const handleLogin = async () => {
     await signInWIthGoogle();
@@ -82,7 +83,10 @@ export function Room() {
       <header>
         <div className="content">
           <img src={logoImg} alt="Letmeask" />
-          <RoomCode id={ roomId } />
+          <div>
+            <RoomCode id={ roomId } />
+            <HomeIcon />
+          </div>
         </div>
       </header>
 
