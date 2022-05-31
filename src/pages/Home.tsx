@@ -57,6 +57,12 @@ export function Home() {
       <main>
         <div className="main-content">
           <img src={ logoImg } alt="Letme Ask" />
+          <button 
+            className="rooms-btn"
+            onClick={ () => { history.push('/Letme-Ask/rooms/') } }
+          >
+            Salas
+          </button>
           <button
             type="button"
             className="create-room"

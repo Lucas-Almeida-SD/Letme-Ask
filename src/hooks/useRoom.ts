@@ -23,7 +23,7 @@ type FirebaseQuestions = Record<string,{
 }>
 
 export function useRoom(roomId : string) {
-  const { user, setIsFetching } = useAuth();
+  const { user, isFetching, setIsFetching } = useAuth();
   const [questions, setQuestions] = useState<Questions[]>([])
   const [title, setTitle] = useState('');
 
@@ -48,7 +48,6 @@ export function useRoom(roomId : string) {
       
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions.reverse());
-      setIsFetching(false);
     });
 
     return () => {
@@ -56,6 +55,13 @@ export function useRoom(roomId : string) {
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId, user?.id]);
+
+  useEffect(() => {
+    if (isFetching) {
+      setIsFetching(false);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [questions])
 
   return { title, questions };
 }
