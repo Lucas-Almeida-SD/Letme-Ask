@@ -1,13 +1,13 @@
 #question-content {
   display: flex;
   flex-direction: column;
+  margin-bottom: 18px;
 
   .question {
     background-color: #fefefe;
     border-radius: 8px;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
     padding: 24px;
-    margin-bottom: 18px;
   
     &.answered {
       background-color: #dbdcdd;
@@ -102,7 +102,7 @@
 
       p {
         color: #29292e;
-        background-color: #ddd;
+        background-color: #dbdcdd;
         border-radius: 8px;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
         padding: 24px;
