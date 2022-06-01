@@ -10,6 +10,7 @@ type Questions = {
   isAnswered: boolean,
   likeCount: number,
   likeId: string | undefined,
+  answers: string[],
 }
 
 type FirebaseQuestions = Record<string,{
@@ -20,6 +21,7 @@ type FirebaseQuestions = Record<string,{
   likes: Record<string, {
     authorId: string
   }>
+  answers: Record<string, string>
 }>
 
 export function useRoom(roomId : string) {
@@ -44,10 +46,11 @@ export function useRoom(roomId : string) {
         likeCount: Object.values(value.likes ?? {}).length,
         likeId:  Object.entries(value.likes ?? {})
           .find(([key, like]) => like.authorId === (user?.id))?.[0],
+        answers: Object.values(value.answers ?? {}),
       }));
       
       setTitle(databaseRoom.title);
-      setQuestions(parsedQuestions.reverse());
+      setQuestions(parsedQuestions);
     });
 
     return () => {

@@ -1,8 +1,11 @@
 import { Dispatch, SetStateAction, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { Button } from "./Button";
 import returnImg from '../assets/images/return.svg';
 import '../styles/answerQuestion.scss';
 import { database } from "../services/firebase";
+
+const replySent = () => toast.success('Reply sent!');
 
 type AnswerType = {
   content: string,
@@ -29,8 +32,11 @@ export function AnswerQuestion({
     await database
       .ref(`rooms/${roomId}/questions/${questionId}/answers`).push(answer);
     
+    replySent();
     setIsAnswering(false);
   }
+  console.log(questionId);
+  
 
   return (
     <div id="answer-question">
@@ -46,6 +52,7 @@ export function AnswerQuestion({
         />
         <Button type="submit">Responder</Button>
       </form>
+      <Toaster />
     </div>
   );
 }

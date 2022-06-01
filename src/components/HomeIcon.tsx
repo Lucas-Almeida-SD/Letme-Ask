@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import homeImg from '../assets/images/home2.svg';
+import homeImg from '../assets/images/home.svg';
 
 import '../styles/homeIcon.scss';
 

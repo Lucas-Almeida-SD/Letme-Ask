@@ -1,95 +1,112 @@
-.question {
-  background-color: #fefefe;
-  border-radius: 8px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  padding: 24px;
+#question-content {
+  display: flex;
+  flex-direction: column;
 
-  & + .question {
-    margin-top: 14px;
-  }
-
-  &.answered {
-    background-color: #dbdcdd;
-  }
-
-  &.highlighted {
-    background-color: #f4f0ff;
-    border: 1px solid #835afd;
-
-    footer .user-info span {
+  .question {
+    background-color: #fefefe;
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+    padding: 24px;
+    margin-bottom: 18px;
+  
+    &.answered {
+      background-color: #dbdcdd;
+    }
+  
+    &.highlighted {
+      background-color: #f4f0ff;
+      border: 1px solid #835afd;
+  
+      footer .user-info span {
+        color: #29292e;
+      }
+    }
+  
+    p {
       color: #29292e;
     }
-  }
-
-  p {
-    color: #29292e;
-  }
-
-  footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 24px;
-
-    .user-info {
+  
+    footer {
       display: flex;
       align-items: center;
-
-      img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-      }
-
-      span {
-        margin-left: 8px;
-        color: #737380;
-        font-size: 14px;
-      }
-    }
-
-    .interactive-buttons {
-      display: flex;
-      gap: 12px;
-    }
-
-    .answer-btn {
-      position: absolute;
-      top: 8px;
-      right: 24px;
-      font-size: 14px;
-      background-color: #e559f9;
-      color: #fff;
-      border: 0;
-      padding: 2px 8px;
-      border-radius: 9999px;
-      cursor: pointer;
-    }
-
-    button {
-      border: 0;
-      background-color: transparent;
-      cursor: pointer;
-      transition: filter 0.2s;
-
-      &.like-button {
+      justify-content: space-between;
+      margin-top: 24px;
+  
+      .user-info {
         display: flex;
-        align-items: flex-end;
-        color: #737380;
-        gap: 8px;
-
-        &.liked {
-          color: #835afd;
-
-          svg path {
-            stroke: #835afd;
-          }
+        align-items: center;
+  
+        img {
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+        }
+  
+        span {
+          margin-left: 8px;
+          color: #737380;
+          font-size: 14px;
         }
       }
+  
+      .interactive-buttons {
+        display: flex;
+        gap: 12px;
 
-      &:hover {
-        filter: brightness(0.7);
+        .answer-btn {
+          position: absolute;
+          top: 8px;
+          right: 24px;
+          font-size: 14px;
+          background-color: #e559f9;
+          color: #fff;
+          border: 0;
+          padding: 2px 8px;
+          border-radius: 9999px;
+          cursor: pointer;
+        }
+      }
+  
+      button {
+        border: 0;
+        background-color: transparent;
+        cursor: pointer;
+        transition: filter 0.2s;
+  
+        &.like-button {
+          display: flex;
+          align-items: flex-end;
+          color: #737380;
+          gap: 8px;
+  
+          &.liked {
+            color: #835afd;
+  
+            svg path {
+              stroke: #835afd;
+            }
+          }
+        }
+  
+        &:hover {
+          filter: brightness(0.7);
+        }
       }
     }
   }
+
+  .answers {
+      align-self: flex-end;
+      width: 90%;
+      margin-bottom: 48px;
+
+      p {
+        color: #29292e;
+        background-color: #ddd;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+        padding: 24px;
+      }
+    }
+
 }

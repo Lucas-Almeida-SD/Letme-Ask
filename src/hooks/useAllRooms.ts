@@ -29,7 +29,7 @@ export function useAllRooms() {
     const getRooms = async () => {
       const roomsRef = await database.ref('rooms').get();
       const roomsValues = roomsRef.val();
-      const arrayRooms  = Object.entries<RoomsValuesTypes>(roomsValues).map(([key, value]) => ({
+      const arrayRooms  = Object.entries<RoomsValuesTypes>(roomsValues ?? {}).map(([key, value]) => ({
         roomId: key,
         title: value.title,
         authorId: value.authorId,

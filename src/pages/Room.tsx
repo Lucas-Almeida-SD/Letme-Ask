@@ -130,6 +130,7 @@ export function Room() {
                 author={ question.author }
                 isAnswered={ question.isAnswered }
                 isHighlighted={question.isHighlighted }
+                answers={ question.answers }
               >
                 {(!question.isAnswered) && (
                   <button

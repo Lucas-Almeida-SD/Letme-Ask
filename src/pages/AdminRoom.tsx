@@ -32,6 +32,7 @@ export function AdminRoom() {
   const { title, questions } = useRoom(roomId);
   const { user, isFetching } = useAuth();
   const [isAnswering, setIsAnswering] = useState<boolean>(false);
+  const [indexAnswer, setIndexAnswer] = useState<number>(-1);
   const emptyRoomText = 'Envie o código desta sala para seus amigos e comece a responder perguntas!';
 
   useEffect(() => {
@@ -42,6 +43,11 @@ export function AdminRoom() {
   const handleCloseRoom = async () => {
     await database.ref(`/rooms/${roomId}`).update({ closedAt: new Date() });
     history.push('/Letme-Ask');
+  }
+
+  const handleReply = (index : number) => {
+    setIndexAnswer(index);
+    setIsAnswering(true);
   }
 
   const handleRemoveQuestion = async (questionId : string) => {
@@ -90,6 +96,7 @@ export function AdminRoom() {
                   author={ question.author }
                   isAnswered={ question.isAnswered }
                   isHighlighted={question.isHighlighted }
+                  answers={ question.answers }
                 >
                   {(!question.isAnswered) && (
                     <>
@@ -97,7 +104,7 @@ export function AdminRoom() {
                         type="button"
                         className="answer-btn"
                         aria-label="Botão de responder perguta"
-                        onClick={ () => setIsAnswering(true)}
+                        onClick={ () => handleReply(index)}
                       >
                         Responder
                       </button>
@@ -127,7 +134,7 @@ export function AdminRoom() {
                     <img src={ deleteImg } alt="Remover perguta" />
                   </button>
                 </Question>
-                {(isAnswering) && (
+                {(isAnswering && indexAnswer === index) && (
                   <AnswerQuestion
                     content={question.content}
                     roomId={ roomId }
