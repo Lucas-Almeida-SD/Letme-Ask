@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/Letme-Ask/static/css/main.2d45430e.css",
+    "main.css": "/Letme-Ask/static/css/main.ec6a82a1.css",
     "main.js": "/Letme-Ask/static/js/main.80a18b5c.js",
     "static/media/loading.gif": "/Letme-Ask/static/media/loading.7b07a09a717932e8dd2a.gif",
     "static/media/illustration.svg": "/Letme-Ask/static/media/illustration.ae7276f02d68828a7fd05900182dccd4.svg",
@@ -14,11 +14,11 @@
     "static/media/answer.svg": "/Letme-Ask/static/media/answer.4502a8d5a18c09b88dbbc129df3c97a6.svg",
     "static/media/check.svg": "/Letme-Ask/static/media/check.5dfa6ed6686122c45d79fefd527e506f.svg",
     "static/media/home.svg": "/Letme-Ask/static/media/home.ff2f60a4f5075ce7569d51f99d27abdd.svg",
-    "main.2d45430e.css.map": "/Letme-Ask/static/css/main.2d45430e.css.map",
+    "main.ec6a82a1.css.map": "/Letme-Ask/static/css/main.ec6a82a1.css.map",
     "main.80a18b5c.js.map": "/Letme-Ask/static/js/main.80a18b5c.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d45430e.css",
+    "static/css/main.ec6a82a1.css",
     "static/js/main.80a18b5c.js"
   ]
 }
