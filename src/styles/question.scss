@@ -53,6 +53,19 @@
       gap: 12px;
     }
 
+    .answer-btn {
+      position: absolute;
+      top: 8px;
+      right: 24px;
+      font-size: 14px;
+      background-color: #e559f9;
+      color: #fff;
+      border: 0;
+      padding: 2px 8px;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+
     button {
       border: 0;
       background-color: transparent;
