@@ -1,7 +1,7 @@
-#question-content {
+.question-content {
   display: flex;
   flex-direction: column;
-  margin-bottom: 18px;
+  margin-bottom: 28px;
 
   .question {
     background-color: #fefefe;
@@ -98,7 +98,6 @@
   .answers {
       align-self: flex-end;
       width: 90%;
-      margin-bottom: 48px;
 
       p {
         color: #29292e;

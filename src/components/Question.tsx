@@ -21,7 +21,7 @@ export function Question({
 } : QuestionType) {
   
   return (
-    <div id="question-content">
+    <div className="question-content">
       <div
         className={cn(
           'question',
