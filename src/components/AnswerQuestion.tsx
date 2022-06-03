@@ -35,8 +35,6 @@ export function AnswerQuestion({
     replySent();
     setIsAnswering(false);
   }
-  console.log(questionId);
-  
 
   return (
     <div id="answer-question">
