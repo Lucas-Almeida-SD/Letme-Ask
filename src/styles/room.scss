@@ -179,17 +179,17 @@
         .buttons-header {
           flex-wrap: wrap;
           justify-content: center;
-          
-          #home-icon {
-            position: absolute;
-            top: 12px;
-            right: 0;
-          }
 
           .outlined {
             height: 36px;
             font-size: 12px;
           }
+        }
+
+        #home-icon {
+          position: absolute;
+          top: 12px;
+          right: 0;
         }
       }
     }
