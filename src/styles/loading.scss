@@ -9,3 +9,11 @@
   justify-content: center;
   z-index: 9999;
 }
+
+@media screen and (max-width: 480px) {
+  .loading {
+    img {
+      width: 200px;
+    }
+  }
+}
