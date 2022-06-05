@@ -112,17 +112,51 @@
 
     .question-list {
       margin-top: 48px;
+    }
+  }
 
-      .question-container {
-        position: relative;
+}
 
-        .question {
-          padding-top: 28px;
+@media screen and (min-width: 651px) and (max-width: 800px) {
+  #page-room {
+    header {
+      .content {
+
+        > img {
+          height: 60px;
+        }
+
+        .buttons-header {
+          .room-code {
+            height: 36px;
+        
+            div {
+              img {
+                height: 15px;
+                width: 15px;
+              }
+            }
+          
+            span {
+              width: auto;
+              font-size: 10px;
+              font-weight: 300;
+            }
+          }
+
+          #home-icon {
+            height: 38px;
+            width: 38px;
+          }
+
+          .outlined {
+            height: 36px;
+            font-size: 12px;
+          }
         }
       }
     }
   }
-
 }
 
 @media screen and (max-width: 650px) {
@@ -132,12 +166,30 @@
       padding: 24px;
   
       .content {
+        position: relative;
         flex-wrap: wrap;
         flex-direction: column;
 
         > img {
           height: 60px;
           margin-bottom: 8px;
+          align-self: flex-start;
+        }
+
+        .buttons-header {
+          flex-wrap: wrap;
+          justify-content: center;
+          
+          #home-icon {
+            position: absolute;
+            top: 12px;
+            right: 0;
+          }
+
+          .outlined {
+            height: 36px;
+            font-size: 12px;
+          }
         }
       }
     }
@@ -197,48 +249,6 @@
           margin-left: 12px;
         }
       }
-  
-      .question-list {
-        // .question-container {
-        //   position: relative;
-  
-        //   .question {
-        //     padding-top: 28px;
-        //   }
-        // }
-      }
-
-      .question-content {
-        p {
-          font-size: 14px;
-        }
-        
-        footer {
-          .user-info {
-            img {
-              height: 34px;
-              width: 34px;
-            }
-    
-            span {
-              font-size: 12px;
-            }
-          }
-
-          .interactive-buttons {
-            span {
-              font-size: 14px;
-            }
-
-            svg path{
-              height: 38px;
-              width: 38px;
-            }
-          }
-
-        }
-      }
     }
-  
   }
 }

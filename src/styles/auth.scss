@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 60px 80px;
+    padding: 30px 80px;
   }
   
   img {
@@ -146,7 +146,6 @@
   #page-auth {
     // flex-direction: column;
     flex-wrap: wrap;
-    position: relative;
     
     aside {
       width: 100%;
@@ -172,8 +171,8 @@
       content: '';
       width: 40px;
       height: 40px;
-      position: absolute;
-      left: 50%;
+      align-self: center;
+      margin-top: 18px;
       background-image: url('../assets/images/down.png');
       background-size: cover;
       bottom: 0;
@@ -182,11 +181,11 @@
 
     @keyframes down {
       0% {
-        transform: translate(-50%, -32px);
+        transform: translateY(0);
         opacity: 1;
       }
       100% {
-        transform: translate(-50%, -4px);
+        transform: translateY(28px);
         opacity: 0;
       }
     }
