@@ -25,3 +25,22 @@
     font-weight: 500;
   }
 }
+
+@media screen and (max-width: 650px) {
+  .room-code {
+    height: 36px;
+
+    div {
+      img {
+        height: 15px;
+        width: 15px;
+      }
+    }
+  
+    span {
+      width: auto;
+      font-size: 10px;
+      font-weight: 300;
+    }
+  }
+}

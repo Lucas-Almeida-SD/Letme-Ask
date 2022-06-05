@@ -14,3 +14,10 @@
     filter: brightness(0.8);
   }
 }
+
+@media screen and (max-width: 650px) {
+  #home-icon {
+    height: 38px;
+    width: 38px;
+  }
+}
