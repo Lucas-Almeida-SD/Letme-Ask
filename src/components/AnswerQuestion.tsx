@@ -48,7 +48,7 @@ export function AnswerQuestion({
           value={ answer }
           onChange={ ({ target }) => setAnswer(target.value) }
         />
-        <Button type="submit">Responder</Button>
+        <Button type="submit" disabled={ !answer }>Responder</Button>
       </form>
       <Toaster />
     </div>
